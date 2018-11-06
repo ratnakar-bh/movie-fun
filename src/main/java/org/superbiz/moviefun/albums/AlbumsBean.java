@@ -27,7 +27,7 @@ import java.util.List;
 @Repository
 public class AlbumsBean {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "album")
     private EntityManager entityManager;
 
     @Transactional
