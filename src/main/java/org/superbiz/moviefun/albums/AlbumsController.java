@@ -51,7 +51,7 @@ public class AlbumsController {
     @PostMapping("/{albumId}/cover")
     public String uploadCover(@PathVariable Long albumId, @RequestParam("file") MultipartFile uploadedFile) {
         //System.out.println("Uploading cover for album with id " + albumId);
-        logger.debug("Uploading cover for album with id {}", albumId);
+        logger.info("Uploading cover for album with id {}", albumId);
 
         if (uploadedFile.getSize() > 0) {
             try {
@@ -68,6 +68,7 @@ public class AlbumsController {
 
     @GetMapping("/{albumId}/cover")
     public HttpEntity<byte[]> getCover(@PathVariable long albumId) throws IOException, URISyntaxException {
+        logger.info("gETTING THE COVER");
         Optional<Blob> maybeCoverBlob = blobStore.get(getCoverBlobName(albumId));
         Blob coverBlob = maybeCoverBlob.orElseGet(this::buildDefaultCoverBlob);
 
